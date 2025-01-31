@@ -13,20 +13,23 @@ function NewUserForm() {
     console.log(fields)
   }
 
-  const updateField = (e,fieldName)=>{
-    setFields(prevFields=>({
-      ...prevFields,
-      [fieldName]:e.target.value
-    }))
-    console.log(fields)
+  const updateField = (e)=>{
+    const {name, value} = e.target
+
+    setFields(prevFields=>{
+      return {
+        ...prevFields,
+        [name]:value
+      }
+    })
   }
   return (
     <div>
         <form action="" onSubmit={handleSubmit}>
-            <label htmlFor="">Email</label><input type="text" onChange={(e)=> updateField(e,'email')}/>
-            <label htmlFor="">New password</label><input type="text" onChange={(e)=> updateField(e,'password')}/>
-            <label htmlFor="">Name</label><input type="text" onChange={(e)=> updateField(e,'name')}/>
-            <label htmlFor="">Surname</label><input type="text" onChange={(e)=> updateField(e,'surname')}/>
+            <label htmlFor="">Email</label><input type="text" name='email' onChange={updateField}/>
+            <label htmlFor="">New password</label><input type="text" name='password' onChange={updateField}/>
+            <label htmlFor="">Name</label><input type="text" name='name' onChange={updateField}/>
+            <label htmlFor="">Surname</label><input type="text" name='surname' onChange={updateField}/>
             <button type="submit">Register</button>
         </form>
     </div>
